@@ -1,7 +1,6 @@
 const express = require('express');
 var path = require('path');
 var bodyparser = require('body-parser');
-var dbSchemas = require('./dbSchemas');
 
 const app = express();
 const port = 3000;

@@ -1,10 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import SignForm from './containers/signForm';
 
 class App extends React.Component {
   render() {
     return (
-      <div> Hello Bitches </div>
+      <div>
+        <SignForm />
+      </div>
     );
   }
 }
