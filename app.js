@@ -17,6 +17,7 @@ var options = {
 
 //Routing
 index_ROUTING(app, options);
+var apiMod = require('./api/apiMod')(app);
 
 app.listen(port, function(err) {
   if(err) {

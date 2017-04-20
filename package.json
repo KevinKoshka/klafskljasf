@@ -9,6 +9,7 @@
     "babelify": "^7.3.0",
     "body-parser": "^1.17.1",
     "express": "^4.15.2",
+    "jquery": "^3.2.1",
     "mongoose": "^4.9.3",
     "react": "^15.5.1",
     "react-dom": "^15.5.1",
