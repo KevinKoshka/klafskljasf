@@ -1,16 +1,9 @@
-##React MK
+# React MK
 
-Para levantar el server con **express**, por ahora se usa:
+Para levantar el server con **express**, y vigilar y crear bundles con **watchify** se usa:
 ```
-  $ npm start
+  $ grunt server
 ```
-Para levantar el **watchify** de **browserify** se usa:
-```
-  $ npm run watch
-```
-Esto es lo próximo a cambiar, unificar estod dos pasos.
-
-
 Para iniciar **MongoDB**, correr en consola:
 ```
   $ mongod
