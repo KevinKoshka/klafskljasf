@@ -5,8 +5,9 @@ module.exports = function() {
   var Schema = mongoose.Schema;
   //Se crea el schema
   var userSchema = new Schema({
-    name     : { type: String, required: true, unique: true },
-    password : { type: String, required: true}
+    name     : { type : String, required : true, unique : true },
+    password : { type : String, required : true, unique : true},
+    admin    : { type : Boolean }
   });
   //Se crea el modelo que usa al schema
   var User = mongoose.model('User', userSchema);

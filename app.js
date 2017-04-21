@@ -1,7 +1,9 @@
 const express = require('express');
 var path = require('path');
 var bodyparser = require('body-parser');
+var jwt = require('jsonwebtoken');
 
+const apiRouter = express.Router();
 const app = express();
 const port = 3000;
 //Routing modules
@@ -17,7 +19,7 @@ var options = {
 
 //Routing
 index_ROUTING(app, options);
-var apiMod = require('./api/apiMod')(app);
+var apiMod = require('./api/apiMod')(app, jwt, apiRouter);
 
 app.listen(port, function(err) {
   if(err) {

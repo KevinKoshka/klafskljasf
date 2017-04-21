@@ -1,4 +1,4 @@
-module.exports = (app) => {
+module.exports = (app, jwt, apiRouter) => {
   //Se importan los schemas para poder hacer los pedidos a la base de datos.
   const DbSchemas = require('../dbSchemas')();
 
