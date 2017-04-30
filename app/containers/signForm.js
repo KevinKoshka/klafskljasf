@@ -13,23 +13,39 @@ class SignForm extends React.Component {
     }
 
     this.onLogIn = this.onLogIn.bind(this);
+    this.usernameChange = this.usernameChange.bind(this);
+    this.passwordChange = this.passwordChange.bind(this);
   }
 
   render() {
     return(
       <form>
-        <input type="text" name="username" placeholder="Username"  value={this.state.user.username} />
-        <input type="password" name="password" placeholder="••••••" value={this.state.user.password} />
+        <input type="text" name="username" placeholder="Username"  onChange={(e) => this.usernameChange(e)} />
+        <input type="password" name="password" placeholder="••••••" onChange={(e) => this.passwordChange(e)} />
         <input type="submit" value="Log In" onClick={(e) => this.onLogIn(e)} />
       </form>
     );
   }
 
+  usernameChange(e) {
+    this.setState({user : { username : e.target.value }});
+    console.log(this.state.user)
+  }
+
+  passwordChange(e) {
+    this.setState({user : { password : e.target.value }});
+  }
+
   onLogIn(e) {
-    console.log(this.state.user);
     e.preventDefault();
-    $.ajax('/api/authenticate').done(function(data){
-      console.log(data);
+    $.ajax({
+      method : 'POST',
+      url : '/api/auth',
+      data : {
+        username : this.state.user.username,
+        password : this.state.user.password
+      }
+      }).done(function(data){
     });
   }
 }
