@@ -6,34 +6,21 @@ class SignForm extends React.Component {
     super(props);
 
     this.state = {
-      user : {
-        username : "",
-        password : ""
-      }
+      username : "",
+      password : ""
     }
 
     this.onLogIn = this.onLogIn.bind(this);
-    this.usernameChange = this.usernameChange.bind(this);
-    this.passwordChange = this.passwordChange.bind(this);
   }
 
   render() {
     return(
       <form>
-        <input type="text" name="username" placeholder="Username"  onChange={(e) => this.usernameChange(e)} />
-        <input type="password" name="password" placeholder="••••••" onChange={(e) => this.passwordChange(e)} />
+        <input type="text" name="username" placeholder="Username"  onChange={(e) => this.setState({username : e.target.value})} />
+        <input type="password" name="password" placeholder="••••••" onChange={(e) => this.setState({password : e.target.value})} />
         <input type="submit" value="Log In" onClick={(e) => this.onLogIn(e)} />
       </form>
     );
-  }
-
-  usernameChange(e) {
-    this.setState({user : { username : e.target.value }});
-    console.log(this.state.user)
-  }
-
-  passwordChange(e) {
-    this.setState({user : { password : e.target.value }});
   }
 
   onLogIn(e) {
@@ -42,10 +29,11 @@ class SignForm extends React.Component {
       method : 'POST',
       url : '/api/auth',
       data : {
-        username : this.state.user.username,
-        password : this.state.user.password
+        username : this.state.username,
+        password : this.state.password
       }
-      }).done(function(data){
+    }).done(function(data){
+      console.log(data);
     });
   }
 }

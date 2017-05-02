@@ -3,13 +3,10 @@ module.exports = (app, jwt, apiRouter) => {
   const DbSchemas = require('../dbSchemas')();
 
   app.post('/api/auth', (req, res) => {
-    console.log(req.body);
-   /* DbSchemas.User.find({ name : 'kevinkoshka' }, function(err, user){
+    DbSchemas.User.find({ name : req.body.username, password : req.body.password }, function(err, user){
       if (err) throw 'Username not found';
       res.status(200).send(user);
     })
-    */
-    res.status(200).send('user');
   });
   
 }
