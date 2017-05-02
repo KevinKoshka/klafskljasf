@@ -6,10 +6,8 @@ class SignForm extends React.Component {
     super(props);
 
     this.state = {
-      user : {
-        username : "",
-        password : ""
-      }
+      username : "",
+      password : ""
     }
 
     this.onLogIn = this.onLogIn.bind(this);
@@ -18,17 +16,23 @@ class SignForm extends React.Component {
   render() {
     return(
       <form>
-        <input type="text" name="username" placeholder="Username"  value={this.state.user.username} />
-        <input type="password" name="password" placeholder="••••••" value={this.state.user.password} />
+        <input type="text" name="username" placeholder="Username"  onChange={(e) => this.setState({username : e.target.value})} />
+        <input type="password" name="password" placeholder="••••••" onChange={(e) => this.setState({password : e.target.value})} />
         <input type="submit" value="Log In" onClick={(e) => this.onLogIn(e)} />
       </form>
     );
   }
 
   onLogIn(e) {
-    console.log(this.state.user);
     e.preventDefault();
-    $.ajax('/api/authenticate').done(function(data){
+    $.ajax({
+      method : 'POST',
+      url : '/api/auth',
+      data : {
+        username : this.state.username,
+        password : this.state.password
+      }
+    }).done(function(data){
       console.log(data);
     });
   }
