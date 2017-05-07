@@ -7,23 +7,30 @@ class SignForm extends React.Component {
 
     this.state = {
       username : "",
-      password : ""
+      password : "",
+      valMessage : ""
     }
+    this.goodMessage = "Congratulations!"
+    this.badMessage  = "Contraseña o Usuario incorrecto."
 
     this.onLogIn = this.onLogIn.bind(this);
   }
 
   render() {
     return(
-      <form>
-        <input type="text" name="username" placeholder="Username"  onChange={(e) => this.setState({username : e.target.value})} />
-        <input type="password" name="password" placeholder="••••••" onChange={(e) => this.setState({password : e.target.value})} />
-        <input type="submit" value="Log In" onClick={(e) => this.onLogIn(e)} />
-      </form>
+      <div className="form-container">
+        <p className="val-message">{this.state.valMessage}</p>
+        <form className="user-form">
+          <input type="text" name="username" placeholder="Usuario"  onChange={(e) => this.setState({username : e.target.value})} />
+          <input type="password" name="password" placeholder="••••••" onChange={(e) => this.setState({password : e.target.value})} />
+          <input type="submit" value="Log In" onClick={(e) => this.onLogIn(e)} />
+        </form>
+      </div>
     );
   }
 
   onLogIn(e) {
+    var that = this;
     e.preventDefault();
     $.ajax({
       method : 'POST',
@@ -33,7 +40,12 @@ class SignForm extends React.Component {
         password : this.state.password
       }
     }).done(function(data){
-      console.log(data);
+      console.log(that)
+      if(!data[0]){
+        that.setState({valMessage : that.badMessage});
+      } else {
+        that.setState({valMessage : that.goodMessage});
+      }
     });
   }
 }
